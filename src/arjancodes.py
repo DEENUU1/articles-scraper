@@ -15,7 +15,6 @@ class ArjanCodesScraper(ScraperStrategy):
         super().__init__()
         self.num_of_results = num_of_results
 
-
     @staticmethod
     def _parse_article(article: Any) -> Optional[Article]:
         try:

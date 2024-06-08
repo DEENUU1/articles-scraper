@@ -4,6 +4,7 @@ import logging
 from history import LocalVisitedOffers
 from src.zaufana_3_strona import Zaufana3StronaScraper
 from src.arjancodes import ArjanCodesScraper
+from src.demagog import DemagogScraper
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -22,7 +23,10 @@ def main() -> None:
     arjan_codes_scraper = ArjanCodesScraper(num_of_results=0)
     arjan_codes_scraper.url = "https://www.arjancodes.com/blog/"
 
-    context = Context(arjan_codes_scraper)
+    demagog_scraper = DemagogScraper(num_of_results=0)
+    demagog_scraper.url = "https://demagog.org.pl/analizy_i_raporty/"
+
+    context = Context(demagog_scraper)
 
     parsed_offers = context.run_scraper()
 
