@@ -15,16 +15,16 @@ logger = logging.getLogger(__name__)
 def main() -> None:
     local_history = LocalVisitedOffers()
 
-    national_geographic_scraper = NationalGeographicScraper(num_of_results=3)
+    national_geographic_scraper = NationalGeographicScraper(num_of_results=10)
     national_geographic_scraper.url = "https://www.nationalgeographic.com/science"
 
-    zaufana_3_strona_scraper = Zaufana3StronaScraper(num_of_results=0)
+    zaufana_3_strona_scraper = Zaufana3StronaScraper(num_of_results=10)
     zaufana_3_strona_scraper.url = "https://zaufanatrzeciastrona.pl/"
 
-    arjan_codes_scraper = ArjanCodesScraper(num_of_results=0)
+    arjan_codes_scraper = ArjanCodesScraper(num_of_results=10)
     arjan_codes_scraper.url = "https://www.arjancodes.com/blog/"
 
-    demagog_scraper = DemagogScraper(num_of_results=0)
+    demagog_scraper = DemagogScraper(num_of_results=10)
     demagog_scraper.url = "https://demagog.org.pl/analizy_i_raporty/"
 
     context = Context(national_geographic_scraper)
