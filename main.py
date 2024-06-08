@@ -3,6 +3,7 @@ from src.scraper import Context
 import logging
 from history import LocalVisitedOffers
 from src.zaufana_3_strona import Zaufana3StronaScraper
+from src.arjancodes import ArjanCodesScraper
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -18,7 +19,10 @@ def main() -> None:
     zaufana_3_strona_scraper = Zaufana3StronaScraper(num_of_results=0)
     zaufana_3_strona_scraper.url = "https://zaufanatrzeciastrona.pl/"
 
-    context = Context(zaufana_3_strona_scraper)
+    arjan_codes_scraper = ArjanCodesScraper(num_of_results=0)
+    arjan_codes_scraper.url = "https://www.arjancodes.com/blog/"
+
+    context = Context(arjan_codes_scraper)
 
     parsed_offers = context.run_scraper()
 
