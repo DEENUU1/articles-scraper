@@ -5,6 +5,7 @@ from history import LocalVisitedOffers
 from src.zaufana_3_strona import Zaufana3StronaScraper
 from src.arjancodes import ArjanCodesScraper
 from src.demagog import DemagogScraper
+from src.notion import create_notion_page
 
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -14,7 +15,7 @@ logger = logging.getLogger(__name__)
 def main() -> None:
     local_history = LocalVisitedOffers()
 
-    national_geographic_scraper = NationalGeographicScraper(num_of_results=10)
+    national_geographic_scraper = NationalGeographicScraper(num_of_results=3)
     national_geographic_scraper.url = "https://www.nationalgeographic.com/science"
 
     zaufana_3_strona_scraper = Zaufana3StronaScraper(num_of_results=0)
@@ -26,7 +27,7 @@ def main() -> None:
     demagog_scraper = DemagogScraper(num_of_results=0)
     demagog_scraper.url = "https://demagog.org.pl/analizy_i_raporty/"
 
-    context = Context(demagog_scraper)
+    context = Context(national_geographic_scraper)
 
     parsed_offers = context.run_scraper()
 
@@ -35,7 +36,10 @@ def main() -> None:
             logger.info(f"Offer {offer.url} already visited")
         else:
             local_history.add_url_to_file(offer.url)
-            # TODO save to notion
+            create_notion_page(
+                offer.title,
+                offer.url
+            )
 
 
 if __name__ == "__main__":
