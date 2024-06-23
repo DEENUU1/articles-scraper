@@ -40,6 +40,7 @@ class ArjanCodesScraper(ScraperStrategy):
         logger.info(f"Found {len(articles)} articles")
 
         if not articles:
+            driver.quit()
             return result
 
         for article in articles:
@@ -60,5 +61,6 @@ class ArjanCodesScraper(ScraperStrategy):
                 break
 
         logger.info(f"Parse {len(result)} articles")
+        driver.quit()
         return result
 

@@ -84,5 +84,6 @@ class Zaufana3StronaScraper(ScraperStrategy):
                     break
 
         logger.info(f"Parse {len(result)} articles")
+        driver.quit()
         return result
 
